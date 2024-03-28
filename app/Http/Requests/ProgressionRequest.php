@@ -14,6 +14,7 @@ class ProgressionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'title' => 'required',
             'poids' => 'required',
             'weight' => 'required',
             'height' => 'required',

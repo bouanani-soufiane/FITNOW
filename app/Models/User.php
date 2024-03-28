@@ -46,7 +46,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function progression ()
+    public function progression()
     {
         return $this->hasMany(Progression::class);
     }

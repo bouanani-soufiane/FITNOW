@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('progressions', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug');
             $table->string('poids');
             $table->integer('weight');
             $table->integer('height');
@@ -25,7 +27,7 @@ return new class extends Migration
             $table->integer('pushUp');
             $table->string('status');
             $table->date('date');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

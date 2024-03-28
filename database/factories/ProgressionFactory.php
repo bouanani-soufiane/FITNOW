@@ -18,6 +18,7 @@ class ProgressionFactory extends Factory
     {
 
         return [
+            'title' => $this->faker->word(),
             'poids' => $this->faker->numberBetween(50, 120),
             'weight' => $this->faker->numberBetween(50, 120),
             'height' => $this->faker->numberBetween(150, 200),

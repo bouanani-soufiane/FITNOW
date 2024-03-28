@@ -20,9 +20,7 @@ class RegisterController extends BaseController
             $validatedData['password'] = bcrypt($validatedData['password']);
 
             $user = User::create($validatedData);
-
-            $token = $user->createToken('RegisterToken')->plainTextToken;
-
+            $token = $user->createToken('register token')->plainTextToken;
             $response = [
                 'token' => $token,
                 'name' => $user->name
@@ -39,22 +37,28 @@ class RegisterController extends BaseController
     #[Route('api/v1/login')]
     public function login(Request $request): JsonResponse
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('LoginToken')->plainTextToken;
-            $success['name'] =  $user->name;
 
-            return $this->sendResponse($success, 'User login successfully.');
-        }
-        else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
+
+            $success = [
+                'access_token' => $token
+            ];
+            return $this->sendResponse($success, 'User login successful.');
+        } else {
+            return $this->sendError('Unauthorized.', ['error' => 'Unauthorized'], JsonResponse::HTTP_UNAUTHORIZED);
         }
     }
+
     #[Route('api/v1/logout')]
-    public function logout()
+    public function logout(Request $request)
     {
+
         auth()->user()->tokens()->delete();
+
         return response()->json(['message' => 'Successfully logged out']);
+
     }
 
 }
