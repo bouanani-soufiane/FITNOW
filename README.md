@@ -1,7 +1,5 @@
 # Développement d'une API REST pour le suivi de condition physique, permettant à chaque utilisateur abonné de gérer ses propres progrès physiques.
 
-## 🧑‍💻 FitNow est une application API conçue pour gérer la progression de la condition physique des utilisateurs. Elle permet aux utilisateurs de suivre leurs activités de remise en forme, telles que les séances d'haltérophilie, les mesures corporelles et les programmes d'entraînement.
-
 # Features
 
 - **Authentification des utilisateurs** : Système d'authentification sécurisé pour l'enregistrement et la connexion des utilisateurs.
